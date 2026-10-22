@@ -14,13 +14,13 @@ permissions:
 jobs:
   dry-run:
     if: github.event_name == 'pull_request' && github.event.pull_request.head.repo.full_name == github.repository
-    uses: openclaw/clawhub/.github/workflows/package-publish.yml@main
+    uses: openclaw/clawhub/.github/workflows/package-publish.yml@6e6c57d1b681c7458ef1519b8fb0dc789801b5b2 # main as of 2026-10-21
     with:
       dry_run: true
 
   publish:
     if: github.event_name == 'workflow_dispatch' || startsWith(github.ref, 'refs/tags/')
-    uses: openclaw/clawhub/.github/workflows/package-publish.yml@main
+    uses: openclaw/clawhub/.github/workflows/package-publish.yml@6e6c57d1b681c7458ef1519b8fb0dc789801b5b2 # main as of 2026-10-21
     with:
       dry_run: false
     secrets:
