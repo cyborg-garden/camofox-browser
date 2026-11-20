@@ -1,0 +1,35 @@
+{
+  "$comment": "Sanitization gate config for camofox-browser. The gate itself lives in cyborg-garden/swarm-map (docs/sanitization-gate.md); this file only says what a particular means here.",
+  "package_name": "camofox-browser",
+  "package_kind": "public fork of an open-source headless browser for AI agents",
+  "sensitive_prefixes": [
+    "docs/",
+    "changelog/"
+  ],
+  "$comment_prefixes": "docs/ and changelog/ hold the prose. Top-level *.md are always included.",
+  "semantic": {
+    "domain_noun": "deployment, operator or scraping target",
+    "flag_examples": [
+      "a real target site, account, session cookie or proxy endpoint tied to one operator's use",
+      "names of real people or organisations taken from one deployment",
+      "contact details of a private individual: personal email, phone number, home address, messaging handle or account ID",
+      "credentials, tokens, internal hostnames, server addresses or chat/group IDs of a real deployment"
+    ],
+    "do_not_flag_examples": [
+      "the publishing organisation and its public projects: Cyborg Garden / cyborg-garden / cyborg.garden, the former names NimbleCo / NimbleCoAI / NimbleCoOrg / nimbleco.ai, this repo's own name and GitHub URLs",
+      "the upstream project, its maintainers and its public identity as already published upstream (camofox, Camoufox, jo-inc)",
+      "public websites named as generic compatibility examples",
+      "generic tool, API, library, model, provider and standard names, and public reference material",
+      "clearly fictional placeholders (Subject A, <case>, example.com, <host>)"
+    ],
+    "model": "moonshotai/kimi-k3"
+  },
+  "deterministic": {
+    "enabled": true,
+    "allow_substrings": [],
+    "skip_paths": [
+      "tests/"
+    ],
+    "$comment_skip_paths": "Test code that holds credential-shaped fixtures on purpose. Provider tokens and private keys are still reported inside these paths."
+  }
+}
